@@ -3,6 +3,7 @@ package com.example.sunstone.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.sunstone.R
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        shimmerFrameLayout.startShimmerAnimation()
         initRecyclerView()
     }
 
@@ -46,9 +48,10 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
             ) {
                 val wallpaperResponse = response.body()
                 if (response.isSuccessful && wallpaperResponse != null) {
+                    shimmerFrameLayout.stopShimmerAnimation()
+                    recyclerView.visibility = View.VISIBLE
                     wallpaperList.addAll(wallpaperResponse.photos)
-                    val wallpaperAdapter =
-                        ResponseAdapter(applicationContext, wallpaperList, this@MainActivity)
+                    val wallpaperAdapter = ResponseAdapter(applicationContext, wallpaperList, this@MainActivity)
                     recyclerView!!.adapter = wallpaperAdapter
                     wallpaperAdapter.notifyDataSetChanged()
                 } else {
