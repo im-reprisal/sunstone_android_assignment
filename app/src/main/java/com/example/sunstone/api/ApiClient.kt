@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface ApiClient {
     @GET("curated")
     fun getWallpaper(
-        @Header("Authorization") credentials: String?,
+        @Header("Authorization") apiKey: String?,
         @Query("page") pageCount: Int,
         @Query("per_page") perPage: Int
     ): Call<ResponseModel?>?
