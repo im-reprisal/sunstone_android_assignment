@@ -1,8 +1,6 @@
 package com.example.sunstone.api;
 
 import static com.example.sunstone.extras.Constants.BASE_URL;
-
-import com.example.kotlin.api.ApiClient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
