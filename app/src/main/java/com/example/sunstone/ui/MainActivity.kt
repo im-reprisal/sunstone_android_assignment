@@ -26,10 +26,16 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        /**
+         * starting the shimmer effect
+         */
         shimmerFrameLayout.startShimmerAnimation()
         initRecyclerView()
     }
 
+    /**
+     * initializing the setting the layout inside recycler view
+     */
     private fun initRecyclerView() {
         recyclerView?.setHasFixedSize(true)
         val gridLayoutManager = GridLayoutManager(this, 2)
@@ -37,6 +43,9 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
         fetchData(START_PAGE)
     }
 
+    /**
+     * setting all the data inside recyclerview by using CallBack
+     */
     private fun fetchData(pageCount: Int) {
         val call: Call<ResponseModel?>? = RetrofitGenerator
             .getInstance()
@@ -64,6 +73,10 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
             }
         })
     }
+
+    /**
+     * applying on item click listener and storing data using intent and passing the data to other activity
+     */
     override fun onItemClick(position: Int) {
         val intent = Intent(applicationContext, FullScreenActivity::class.java)
         intent.putExtra("imageUrl", wallpaperList[position].src.large)
