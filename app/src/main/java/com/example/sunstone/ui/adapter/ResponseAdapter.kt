@@ -14,7 +14,7 @@ import com.example.sunstone.models.Photo
 class ResponseAdapter(
     private val mContext: Context,
     private val wallpaperList: List<Photo>,
-    private val recyclerViewClickInterface: ItemClickListener
+    private val onItemClick: ItemClickListener
 ) :
     RecyclerView.Adapter<ResponseAdapter.ResponseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResponseViewHolder {
@@ -37,7 +37,7 @@ class ResponseAdapter(
         init {
             mWallpaper = itemView.findViewById(R.id.wallpaperImage)
             mWallpaper.setOnClickListener { view: View? ->
-                recyclerViewClickInterface.onItemClick(
+                onItemClick.onItemClick(
                     adapterPosition
                 )
             }

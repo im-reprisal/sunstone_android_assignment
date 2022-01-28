@@ -62,7 +62,6 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
                     wallpaperList.addAll(wallpaperResponse.photos)
                     val wallpaperAdapter = ResponseAdapter(applicationContext, wallpaperList, this@MainActivity)
                     recyclerView!!.adapter = wallpaperAdapter
-                    wallpaperAdapter.notifyDataSetChanged()
                 } else {
                     Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_SHORT).show()
                 }
